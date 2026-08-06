@@ -4,6 +4,8 @@
   var textInput = document.getElementById('numInput');
   var inputError = document.getElementById('inputError');
   var baseRange = document.getElementById('baseRange');
+  var baseTicks = document.querySelector('.base-ticks');
+  var baseScale = document.getElementById('baseScale');
   var baseTubeTens = document.getElementById('baseTubeTens');
   var baseTubeOnes = document.getElementById('baseTubeOnes');
   var tubeBank = document.getElementById('tubeBank');
@@ -32,6 +34,43 @@
   function updateSliderFill(base) {
     var pct = ((base - MIN_BASE) / (MAX_BASE - MIN_BASE)) * 100;
     baseRange.style.setProperty('--pct', pct + '%');
+  }
+
+  // Range inputs move their thumb along a path inset by half the
+  // thumb's own width on each side — not edge to edge of the
+  // element. Ticks/labels positioned with plain percentages ignore
+  // that inset and drift out of alignment with the real values, so
+  // we measure the actual track width and compute exact pixel
+  // positions instead. THUMB_W must match the CSS thumb width.
+  var THUMB_W = 20;
+
+  function valueToLeftPx(value, trackWidth) {
+    var usable = trackWidth - THUMB_W;
+    var ratio = (value - MIN_BASE) / (MAX_BASE - MIN_BASE);
+    return THUMB_W / 2 + ratio * usable;
+  }
+
+  function layoutBaseScale() {
+    var trackWidth = baseRange.getBoundingClientRect().width;
+    if (!trackWidth) return;
+
+    if (baseTicks) {
+      baseTicks.innerHTML = '';
+      for (var v = MIN_BASE; v <= MAX_BASE; v++) {
+        var tick = document.createElement('span');
+        tick.className = 'tick';
+        tick.style.left = valueToLeftPx(v, trackWidth) + 'px';
+        baseTicks.appendChild(tick);
+      }
+    }
+
+    if (baseScale) {
+      var labels = baseScale.querySelectorAll('span[data-value]');
+      labels.forEach(function (label) {
+        var v = parseInt(label.getAttribute('data-value'), 10);
+        label.style.left = valueToLeftPx(v, trackWidth) + 'px';
+      });
+    }
   }
 
   function renderEmpty(message) {
@@ -99,6 +138,14 @@
   updateBaseReadout(parseInt(baseRange.value, 10));
   updateSliderFill(parseInt(baseRange.value, 10));
   renderEmpty('Scrie ceva mai sus');
+
+  layoutBaseScale();
+  window.setTimeout(layoutBaseScale, 250); // after fonts/layout settle
+  var tickResizeTimer = null;
+  window.addEventListener('resize', function () {
+    if (tickResizeTimer) window.clearTimeout(tickResizeTimer);
+    tickResizeTimer = window.setTimeout(layoutBaseScale, 150);
+  });
 
   // --- copy button ---
   var copyResetTimer = null;
