@@ -1,26 +1,26 @@
 :root {
-  --chassis: #050506;
-  --chassis-deep: #000000;
-  --panel: #131315;
-  --panel-inset: #0A0A0B;
-  --device-top: #1C1C1F;
-  --device-border: #28282C;
-  --row-base-top: #1A130A;
-  --row-border: rgba(0, 0, 0, 0.55);
-  --glyph-bg: rgba(255, 255, 255, 0.05);
-  --display-bg: #000000;
-  --metal: #7A828E;
-  --metal-light: #C6CBD2;
-  --metal-dark: #383C42;
+  --chassis: #1A1613;
+  --chassis-deep: #100D0B;
+  --panel: #241F1A;
+  --panel-inset: #17130F;
+  --device-top: #2C251F;
+  --device-border: #38312A;
+  --row-base-top: #2A1D10;
+  --row-border: rgba(0, 0, 0, 0.5);
+  --glyph-bg: rgba(255, 240, 220, 0.06);
+  --display-bg: #0C0A08;
+  --metal: #8C7F6E;
+  --metal-light: #D4C4AE;
+  --metal-dark: #4A4038;
   --amber: #FF9A3D;
   --amber-bright: #FFC084;
-  --amber-dim: #442B14;
-  --amber-glow: rgba(255, 154, 61, 0.55);
-  --display-muted: #4A4D52;
-  --text: #F3F1EC;
-  --text-dim: #9FA3AB;
-  --line: #26262A;
-  --danger: #FF6B58;
+  --amber-dim: #46311A;
+  --amber-glow: rgba(255, 154, 61, 0.5);
+  --display-muted: #55483A;
+  --text: #F0E6D8;
+  --text-dim: #A99D8C;
+  --line: #332B24;
+  --danger: #FF7A5C;
 
   --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
   --font-body: 'Work Sans', 'Segoe UI', sans-serif;
@@ -28,23 +28,23 @@
 }
 
 html[data-theme="light"] {
-  --chassis: #FFFFFF;
-  --chassis-deep: #F2F2F2;
+  --chassis: #EDF0F4;
+  --chassis-deep: #DFE4EA;
   --panel: #FFFFFF;
   --panel-inset: #FFFFFF;
   --device-top: #FFFFFF;
-  --device-border: #E2E2E2;
-  --row-base-top: #FFF6E6;
-  --row-border: rgba(0, 0, 0, 0.09);
-  --glyph-bg: rgba(0, 0, 0, 0.04);
-  --metal: #8D9198;
+  --device-border: #D6DCE3;
+  --row-base-top: #FFF3DD;
+  --row-border: rgba(30, 40, 55, 0.1);
+  --glyph-bg: rgba(30, 40, 60, 0.045);
+  --metal: #64728A;
   --metal-light: #FFFFFF;
-  --metal-dark: #C7CACE;
-  --amber-dim: #F0D5AC;
-  --text: #0A0A0B;
-  --text-dim: #55585E;
-  --line: #E4E4E6;
-  --danger: #C0392B;
+  --metal-dark: #C7CDD7;
+  --amber-dim: #F2D9AF;
+  --text: #171B24;
+  --text-dim: #59616F;
+  --line: #DDE2E9;
+  --danger: #C23A3A;
 }
 
 * { box-sizing: border-box; }
