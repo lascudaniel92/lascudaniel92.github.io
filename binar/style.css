@@ -14,8 +14,18 @@
   --metal-dark: #4A4038;
   --amber: #FF9A3D;
   --amber-bright: #FFC084;
+  --amber-text: #FF9A3D;
   --amber-dim: #46311A;
   --amber-glow: rgba(255, 154, 61, 0.5);
+  --amber-glow-strong: rgba(255, 154, 61, 0.35);
+  --amber-focus: rgba(255, 154, 61, 0.15);
+  --amber-border-soft: rgba(255, 154, 61, 0.22);
+  --amber-bg-wash: rgba(255, 154, 61, 0.06);
+  --thumb-border: #120E0A;
+  --tube-bg-1: #1C1712;
+  --tube-bg-2: #100C09;
+  --tube-border: #332920;
+  --tube-lit-border: #4A3220;
   --display-muted: #55483A;
   --text: #F0E6D8;
   --text-dim: #A99D8C;
@@ -27,24 +37,45 @@
   --font-mono: 'Space Mono', 'Courier New', monospace;
 }
 
+/* Light mode isn't just an inverted version of dark mode — it's a
+   different real display technology. Dark mode glows amber, like a
+   Nixie tube. Light mode glows teal, like a vacuum-fluorescent
+   display (VFD) — the cool-glowing readouts common in daylight-use
+   equipment (microwaves, cash registers, car stereos). Every token
+   below is its own value, not a lightened copy of the dark set. */
 html[data-theme="light"] {
-  --chassis: #EDF0F4;
-  --chassis-deep: #DFE4EA;
-  --panel: #FFFFFF;
-  --panel-inset: #FFFFFF;
-  --device-top: #FFFFFF;
-  --device-border: #D6DCE3;
-  --row-base-top: #FFF3DD;
-  --row-border: rgba(30, 40, 55, 0.1);
-  --glyph-bg: rgba(30, 40, 60, 0.045);
-  --metal: #64728A;
+  --chassis: #DCE6E3;
+  --chassis-deep: #CBD7D3;
+  --panel: #EEF4F2;
+  --panel-inset: #F6FAF9;
+  --device-top: #FAFDFC;
+  --device-border: #C3D1CC;
+  --row-base-top: #E1F5F0;
+  --row-border: rgba(10, 40, 35, 0.1);
+  --glyph-bg: rgba(10, 45, 40, 0.05);
+  --display-bg: #071310;
+  --metal: #4E7C77;
   --metal-light: #FFFFFF;
-  --metal-dark: #C7CDD7;
-  --amber-dim: #F2D9AF;
-  --text: #171B24;
-  --text-dim: #59616F;
-  --line: #DDE2E9;
-  --danger: #C23A3A;
+  --metal-dark: #A9C4BE;
+  --amber: #0F9C8C;
+  --amber-bright: #14C4AF;
+  --amber-text: #0A5C53;
+  --amber-dim: #0E2E2A;
+  --amber-glow: rgba(15, 156, 140, 0.45);
+  --amber-glow-strong: rgba(15, 156, 140, 0.3);
+  --amber-focus: rgba(15, 156, 140, 0.16);
+  --amber-border-soft: rgba(15, 156, 140, 0.28);
+  --amber-bg-wash: rgba(15, 156, 140, 0.08);
+  --thumb-border: #0A211E;
+  --tube-bg-1: #0B1917;
+  --tube-bg-2: #050D0C;
+  --tube-border: #17332F;
+  --tube-lit-border: #1D5A51;
+  --display-muted: #2E4A45;
+  --text: #0E1F1B;
+  --text-dim: #4C6B65;
+  --line: #C6D6D1;
+  --danger: #B23A3A;
 }
 
 * { box-sizing: border-box; }
@@ -64,7 +95,7 @@ body {
   font-family: var(--font-body);
   color: var(--text);
   background:
-    radial-gradient(ellipse 120% 70% at 50% -10%, rgba(255, 154, 61, 0.06), transparent 55%),
+    radial-gradient(ellipse 120% 70% at 50% -10%, var(--amber-bg-wash), transparent 55%),
     linear-gradient(180deg, var(--chassis-deep), var(--chassis) 40%);
   background-color: var(--chassis);
   display: flex;
@@ -86,7 +117,7 @@ main {
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--amber-text);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -111,7 +142,7 @@ h1 {
 }
 h1 em {
   font-style: normal;
-  color: var(--amber);
+  color: var(--amber-text);
 }
 
 .subhead {
@@ -212,7 +243,7 @@ h1 em {
 .num-input:focus {
   outline: none;
   border-color: var(--amber);
-  box-shadow: 0 0 0 3px rgba(255, 154, 61, 0.15);
+  box-shadow: 0 0 0 3px var(--amber-focus);
 }
 
 .num-input.has-error {
@@ -231,14 +262,14 @@ h1 em {
 /* ---------------- Base slider ---------------- */
 
 .row-base {
-  border-color: rgba(255, 154, 61, 0.22);
+  border-color: var(--amber-border-soft);
   background: linear-gradient(180deg, var(--row-base-top), var(--panel-inset) 60%);
 }
 
 .row-base .row-label {
   font-size: 13px;
   letter-spacing: 0.12em;
-  color: var(--amber);
+  color: var(--amber-text);
   font-weight: 700;
 }
 
@@ -263,7 +294,7 @@ h1 em {
   font-size: 58px;
   line-height: 1;
   color: var(--amber-bright);
-  text-shadow: 0 0 18px var(--amber-glow), 0 0 40px rgba(255, 154, 61, 0.35);
+  text-shadow: 0 0 18px var(--amber-glow), 0 0 40px var(--amber-glow-strong);
   min-width: 37px;
   text-align: center;
   transition: text-shadow 0.2s ease;
@@ -271,7 +302,7 @@ h1 em {
 
 @keyframes base-pulse {
   0%   { text-shadow: 0 0 30px var(--amber-bright), 0 0 60px var(--amber-glow); transform: scale(1.08); }
-  100% { text-shadow: 0 0 18px var(--amber-glow), 0 0 40px rgba(255, 154, 61, 0.35); transform: scale(1); }
+  100% { text-shadow: 0 0 18px var(--amber-glow), 0 0 40px var(--amber-glow-strong); transform: scale(1); }
 }
 
 .base-digit.pulse {
@@ -295,7 +326,7 @@ h1 em {
   height: 16px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, var(--metal-light), var(--metal) 55%, var(--metal-dark) 100%);
-  border: 2px solid #0d0d0e;
+  border: 2px solid var(--thumb-border);
   box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   cursor: pointer;
   margin-top: -6px;
@@ -306,7 +337,7 @@ h1 em {
   height: 14px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, var(--metal-light), var(--metal) 55%, var(--metal-dark) 100%);
-  border: 2px solid #0d0d0e;
+  border: 2px solid var(--thumb-border);
   box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   cursor: pointer;
 }
@@ -382,9 +413,9 @@ h1 em {
   height: 42px;
   border-radius: 5px;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,154,61,0.10), transparent 70%),
-    linear-gradient(180deg, #17171A, #0E0E10);
-  border: 1px solid #303034;
+    radial-gradient(ellipse 80% 60% at 50% 40%, var(--amber-bg-wash), transparent 70%),
+    linear-gradient(180deg, var(--tube-bg-1), var(--tube-bg-2));
+  border: 1px solid var(--tube-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -409,7 +440,7 @@ h1 em {
 .tube.lit {
   color: var(--amber-bright);
   text-shadow: 0 0 10px var(--amber-glow), 0 0 22px var(--amber-glow);
-  border-color: #4a3220;
+  border-color: var(--tube-lit-border);
   animation: tube-flicker 0.35s ease-out;
 }
 
@@ -432,8 +463,9 @@ footer {
   font-size: 12px;
   color: var(--text-dim);
   text-align: center;
-  max-width: 340px;
+  max-width: 640px;
   line-height: 1.6;
+  padding: 0 20px;
 }
 
 @media (max-width: 420px) {
@@ -519,7 +551,7 @@ html[data-theme="light"] .theme-toggle .knob {
 .copy-input:focus {
   outline: none;
   border-color: var(--amber);
-  box-shadow: 0 0 0 3px rgba(255, 154, 61, 0.15);
+  box-shadow: 0 0 0 3px var(--amber-focus);
 }
 
 .copy-btn {
