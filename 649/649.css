@@ -140,7 +140,7 @@
     color: var(--ink);
     opacity: 0;
     transform: scale(0.3) translateY(10px);
-    animation: ball-pop 0.5s cubic-bezier(.34,1.56,.64,1) forwards;
+    animation: ball-pop 0.32s cubic-bezier(.34,1.56,.64,1) forwards;
   }
 
   .ball.placeholder {
@@ -218,7 +218,7 @@
   .grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 7px;
     padding: 4px;
   }
 
@@ -244,16 +244,16 @@
 
   .cell .stamp {
     position: absolute;
-    inset: -8%;
+    inset: 2%;
     border-radius: 50%;
-    border: 3px solid var(--stamp);
+    border: 2.5px solid var(--stamp);
     opacity: 0;
     transform: scale(0.4) rotate(0deg);
-    box-shadow: 0 0 0 3px var(--stamp-glow);
+    box-shadow: 0 0 0 2px var(--stamp-glow);
   }
 
   .cell.drawn .stamp {
-    animation: stamp-hit 0.45s cubic-bezier(.2,1.4,.4,1) forwards;
+    animation: stamp-hit 0.3s cubic-bezier(.2,1.4,.4,1) forwards;
   }
 
   .cell.drawn {
@@ -262,8 +262,8 @@
   }
 
   @keyframes stamp-hit {
-    0%   { opacity: 0; transform: scale(2.2) rotate(var(--stamp-rot, -8deg)); }
-    55%  { opacity: 1; transform: scale(0.88) rotate(var(--stamp-rot, -8deg)); }
+    0%   { opacity: 0; transform: scale(1.8) rotate(var(--stamp-rot, -8deg)); }
+    55%  { opacity: 1; transform: scale(0.9) rotate(var(--stamp-rot, -8deg)); }
     100% { opacity: 1; transform: scale(1) rotate(var(--stamp-rot, -8deg)); }
   }
 
