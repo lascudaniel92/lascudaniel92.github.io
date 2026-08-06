@@ -154,16 +154,25 @@
     renderStats();
   }
 
-  var running = false;
+  var pendingTimers = [];
+  var hasDrawnOnce = false;
+  var STAGGER_MS = 90;   // time between each number being stamped
+  var SETTLE_MS = 120;   // pause after the last stamp before saving to history
+
+  function clearPendingTimers() {
+    pendingTimers.forEach(function (id) { window.clearTimeout(id); });
+    pendingTimers = [];
+  }
 
   function runDraw() {
-    if (running) return;
-    running = true;
-    btn.disabled = true;
+    // Spam-friendly: a new click always wins immediately. Cancel
+    // whatever the previous click was still animating and start
+    // clean, rather than ignoring the click or making the person wait.
+    clearPendingTimers();
+    btn.classList.remove('spinning');
+    void btn.offsetWidth; // restart the icon spin cleanly on rapid re-clicks
     btn.classList.add('spinning');
-    btnLabel.textContent = 'Se extrag...';
 
-    // clear previous stamps
     cells.forEach(function (c) { c.classList.remove('drawn'); });
     renderPlaceholders();
 
@@ -171,7 +180,7 @@
     var sorted = drawOrder.slice().sort(function (a, b) { return a - b; });
 
     drawOrder.forEach(function (num, idx) {
-      window.setTimeout(function () {
+      var id = window.setTimeout(function () {
         var cell = cells[num - 1];
         cell.classList.add('drawn');
 
@@ -184,15 +193,16 @@
         }
 
         if (idx === drawOrder.length - 1) {
-          window.setTimeout(function () {
-            running = false;
-            btn.disabled = false;
+          var doneId = window.setTimeout(function () {
             btn.classList.remove('spinning');
             btnLabel.textContent = 'Generează din nou';
+            hasDrawnOnce = true;
             addToHistory(sorted);
-          }, 350);
+          }, SETTLE_MS);
+          pendingTimers.push(doneId);
         }
-      }, idx * 260);
+      }, idx * STAGGER_MS);
+      pendingTimers.push(id);
     });
   }
 
