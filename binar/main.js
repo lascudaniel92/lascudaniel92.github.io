@@ -10,11 +10,20 @@
 
   var MIN_BASE = 2;
   var MAX_BASE = 36;
+  var lastBase = null;
 
   function updateBaseReadout(base) {
     var padded = String(base).padStart(2, '0');
     baseTubeTens.textContent = padded[0];
     baseTubeOnes.textContent = padded[1];
+    if (base !== lastBase) {
+      lastBase = base;
+      baseTubeTens.classList.remove('pulse');
+      baseTubeOnes.classList.remove('pulse');
+      void baseTubeTens.offsetWidth; // restart animation
+      baseTubeTens.classList.add('pulse');
+      baseTubeOnes.classList.add('pulse');
+    }
   }
 
   function updateSliderFill(base) {
