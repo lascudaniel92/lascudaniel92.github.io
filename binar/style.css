@@ -48,7 +48,7 @@ body {
 
 main {
   width: 100%;
-  max-width: 480px;
+  max-width: 1100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -223,66 +223,81 @@ h1 em {
 }
 .base-head .row-label { margin-bottom: 0; }
 
-.base-readout {
+.base-hero {
   display: flex;
-  gap: 4px;
+  justify-content: center;
+  gap: 6px;
+  margin: 4px 0 22px;
 }
 
-.tube-small {
-  width: 32px;
-  height: 42px;
-  font-size: 19px;
-  border-color: #4a3220;
+.base-digit {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--amber-bright);
+  text-shadow: 0 0 18px var(--amber-glow), 0 0 40px rgba(255, 154, 61, 0.35);
+  min-width: 46px;
+  text-align: center;
+  transition: text-shadow 0.2s ease;
+}
+
+@keyframes base-pulse {
+  0%   { text-shadow: 0 0 30px var(--amber-bright), 0 0 60px var(--amber-glow); transform: scale(1.08); }
+  100% { text-shadow: 0 0 18px var(--amber-glow), 0 0 40px rgba(255, 154, 61, 0.35); transform: scale(1); }
+}
+
+.base-digit.pulse {
+  display: inline-block;
+  animation: base-pulse 0.25s ease-out;
 }
 
 .base-range {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 8px;
-  border-radius: 4px;
+  height: 4px;
+  border-radius: 2px;
   background: var(--line);
   outline: none;
 }
 
 .base-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 26px;
-  height: 26px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, var(--metal-light), var(--metal) 55%, var(--metal-dark) 100%);
-  border: 3px solid var(--amber);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.6), 0 0 12px 2px var(--amber-glow);
+  border: 2px solid #0d0d0e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   cursor: pointer;
-  margin-top: -9px;
+  margin-top: -6px;
 }
 
 .base-range::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, var(--metal-light), var(--metal) 55%, var(--metal-dark) 100%);
-  border: 3px solid var(--amber);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.6), 0 0 12px 2px var(--amber-glow);
+  border: 2px solid #0d0d0e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   cursor: pointer;
 }
 
 .base-range::-webkit-slider-runnable-track {
-  height: 8px;
-  border-radius: 4px;
-  background: linear-gradient(to right, var(--amber) 0%, var(--amber) var(--pct, 0%), var(--metal-dark) var(--pct, 0%), var(--metal-dark) 100%);
-  box-shadow: 0 0 10px rgba(255, 154, 61, 0.25);
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--metal-dark) 0%, var(--metal-dark) var(--pct, 0%), var(--line) var(--pct, 0%), var(--line) 100%);
 }
 .base-range::-moz-range-progress {
-  height: 8px;
-  border-radius: 4px;
-  background: var(--amber);
-  box-shadow: 0 0 10px rgba(255, 154, 61, 0.25);
+  height: 4px;
+  border-radius: 2px;
+  background: var(--metal-dark);
 }
 .base-range::-moz-range-track {
-  height: 8px;
-  border-radius: 4px;
-  background: var(--metal-dark);
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
 }
 
 .base-range:focus-visible {
@@ -295,9 +310,8 @@ h1 em {
   justify-content: space-between;
   margin-top: 10px;
   font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--metal);
+  font-size: 11px;
+  color: var(--metal-dark);
 }
 
 /* ---------------- Nixie tube bank ---------------- */
@@ -337,9 +351,9 @@ h1 em {
 
 .tube {
   position: relative;
-  width: 40px;
-  height: 58px;
-  border-radius: 6px;
+  width: 30px;
+  height: 42px;
+  border-radius: 5px;
   background:
     radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,154,61,0.10), transparent 70%),
     linear-gradient(180deg, #17171A, #0E0E10);
@@ -349,7 +363,7 @@ h1 em {
   justify-content: center;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 22px;
+  font-size: 16px;
   color: var(--amber-dim);
   overflow: hidden;
   flex-shrink: 0;
@@ -396,6 +410,7 @@ footer {
 }
 
 @media (max-width: 420px) {
-  .tube { width: 34px; height: 50px; font-size: 18px; }
+  .tube { width: 26px; height: 36px; font-size: 14px; }
   .num-input { font-size: 19px; }
+  .base-digit { font-size: 52px; }
 }
