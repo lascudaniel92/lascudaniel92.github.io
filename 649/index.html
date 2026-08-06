@@ -1,22 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>6/49 numbers</title>
-    <script src="649.js" defer></script>
-    <link rel="stylesheet" href="649.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loto 6/49 — Generator de numere</title>
+<meta name="description" content="Generează 6 numere unice, de la 1 la 49, direct pe o grilă de bilet Loto animată.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="649.css">
 </head>
 <body>
-    <main>
-        <button class="generate" data-generator>Generate 6/49 numbers</button>
-        <div class="theresults">
-            <div class="topresults hidden" datax>
-                <div class="hidden" data-topresults></div>
-            </div>
-        <div class="grid-container grid-container--fit" data-result></div>
+
+<main>
+  <span class="eyebrow">LOTO 6/49</span>
+  <h1>Șase numere, <em>o singură șansă</em>.</h1>
+  <p class="subhead">Apasă butonul și privește biletul cum se completează singur — șase numere unice, de la 1 la 49.</p>
+
+  <div class="result-strip" id="resultStrip" aria-live="polite" aria-label="Numerele extrase"></div>
+
+  <div class="ticket-wrap">
+    <div class="ticket">
+      <div class="ticket-head">
+        <span class="brand">Bilet Loto</span>
+        <span class="label">6 din 49</span>
+      </div>
+      <div class="grid" id="grid"></div>
     </div>
-    </main>  
+  </div>
+
+  <button class="generate-btn" id="generateBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+      <path d="M21 12a9 9 0 1 1-2.6-6.36" stroke-linecap="round"/>
+      <path d="M21 4v5h-5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span id="btnLabel">Generează numerele</span>
+  </button>
+
+  <div class="history">
+    <div class="history-label">Extrageri anterioare</div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+
+  <div class="stats-panel">
+    <div class="stats-head">
+      <span class="brand">Registru de frecvență</span>
+      <span class="label" id="statsCount">0 extrageri</span>
+    </div>
+    <div class="stats-body">
+      <div class="stats-grid" id="statsGrid"></div>
+      <div class="stats-empty" id="statsEmpty">Generează câteva rânduri și aici apare care numere ies cel mai des.</div>
+    </div>
+  </div>
+
+  <footer>Generator numeric fără nicio legătură cu extragerile oficiale Loteria Română. Joacă responsabil.</footer>
+</main>
+
+<script src="649.js"></script>
+
 </body>
 </html>
