@@ -379,9 +379,23 @@ h1 em {
 .tube-bank {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   gap: 16px 14px;
   min-height: 62px;
+  max-height: 340px;
+  overflow-y: auto;
   align-items: flex-start;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--amber) transparent;
+}
+
+.tube-bank::-webkit-scrollbar { width: 8px; }
+.tube-bank::-webkit-scrollbar-track { background: transparent; }
+.tube-bank::-webkit-scrollbar-thumb {
+  background: var(--amber);
+  border-radius: 4px;
+  opacity: 0.5;
 }
 
 .tube-group {
