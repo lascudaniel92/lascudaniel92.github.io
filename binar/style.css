@@ -1,26 +1,26 @@
 :root {
-  --chassis: #232326;
-  --chassis-deep: #17171A;
-  --panel: #2C2C30;
-  --panel-inset: #202024;
-  --device-top: #2E2E32;
-  --device-border: #38383D;
-  --row-base-top: #221D16;
-  --row-border: rgba(0, 0, 0, 0.4);
+  --chassis: #050506;
+  --chassis-deep: #000000;
+  --panel: #131315;
+  --panel-inset: #0A0A0B;
+  --device-top: #1C1C1F;
+  --device-border: #28282C;
+  --row-base-top: #1A130A;
+  --row-border: rgba(0, 0, 0, 0.55);
   --glyph-bg: rgba(255, 255, 255, 0.05);
-  --display-bg: #0D0D0F;
-  --metal: #93969C;
-  --metal-light: #CBCED4;
-  --metal-dark: #55585F;
+  --display-bg: #000000;
+  --metal: #7A828E;
+  --metal-light: #C6CBD2;
+  --metal-dark: #383C42;
   --amber: #FF9A3D;
   --amber-bright: #FFC084;
-  --amber-dim: #4A2E15;
+  --amber-dim: #442B14;
   --amber-glow: rgba(255, 154, 61, 0.55);
-  --display-muted: #5C5C60;
-  --text: #EAE7E0;
-  --text-dim: #9A9CA2;
-  --line: #3D3D42;
-  --danger: #E2604F;
+  --display-muted: #4A4D52;
+  --text: #F3F1EC;
+  --text-dim: #9FA3AB;
+  --line: #26262A;
+  --danger: #FF6B58;
 
   --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
   --font-body: 'Work Sans', 'Segoe UI', sans-serif;
@@ -28,22 +28,22 @@
 }
 
 html[data-theme="light"] {
-  --chassis: #EFECE3;
-  --chassis-deep: #E3DECE;
-  --panel: #F8F5EC;
+  --chassis: #FFFFFF;
+  --chassis-deep: #F2F2F2;
+  --panel: #FFFFFF;
   --panel-inset: #FFFFFF;
   --device-top: #FFFFFF;
-  --device-border: #DAD4C0;
-  --row-base-top: #FBF0DA;
-  --row-border: rgba(0, 0, 0, 0.1);
-  --glyph-bg: rgba(0, 0, 0, 0.045);
-  --metal: #8A8D93;
+  --device-border: #E2E2E2;
+  --row-base-top: #FFF6E6;
+  --row-border: rgba(0, 0, 0, 0.09);
+  --glyph-bg: rgba(0, 0, 0, 0.04);
+  --metal: #8D9198;
   --metal-light: #FFFFFF;
-  --metal-dark: #AFA98F;
-  --amber-dim: #E4C9A4;
-  --text: #2B2A25;
-  --text-dim: #5E5A4C;
-  --line: #DCD6C4;
+  --metal-dark: #C7CACE;
+  --amber-dim: #F0D5AC;
+  --text: #0A0A0B;
+  --text-dim: #55585E;
+  --line: #E4E4E6;
   --danger: #C0392B;
 }
 
@@ -260,11 +260,11 @@ h1 em {
 .base-digit {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 72px;
+  font-size: 58px;
   line-height: 1;
   color: var(--amber-bright);
   text-shadow: 0 0 18px var(--amber-glow), 0 0 40px rgba(255, 154, 61, 0.35);
-  min-width: 46px;
+  min-width: 37px;
   text-align: center;
   transition: text-shadow 0.2s ease;
 }
@@ -439,7 +439,7 @@ footer {
 @media (max-width: 420px) {
   .tube { width: 26px; height: 36px; font-size: 14px; }
   .num-input { font-size: 19px; }
-  .base-digit { font-size: 52px; }
+  .base-digit { font-size: 42px; }
 }
 
 /* ---------------- Theme toggle ---------------- */
