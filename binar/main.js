@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var numInput = document.getElementById('numInput');
+  var textInput = document.getElementById('numInput');
   var inputError = document.getElementById('inputError');
   var baseRange = document.getElementById('baseRange');
   var baseTubeTens = document.getElementById('baseTubeTens');
@@ -30,13 +30,33 @@
     tubeBank.appendChild(span);
   }
 
-  function renderOutput(str) {
+  // Each character of the input becomes its own little cluster of
+  // tubes: the character's code (e.g. 'p' -> 112) re-expressed in
+  // the chosen base — same idea as the original, just for any text
+  // instead of only decimal numbers.
+  function renderOutput(text, base) {
     tubeBank.innerHTML = '';
-    str.split('').forEach(function (ch) {
-      var tube = document.createElement('span');
-      tube.className = 'tube lit';
-      tube.textContent = ch;
-      tubeBank.appendChild(tube);
+    text.split('').forEach(function (ch) {
+      var group = document.createElement('div');
+      group.className = 'tube-group';
+
+      var glyph = document.createElement('span');
+      glyph.className = 'tube-glyph';
+      glyph.textContent = ch === ' ' ? '\u2423' : ch;
+      group.appendChild(glyph);
+
+      var digits = document.createElement('div');
+      digits.className = 'tube-digits';
+      var code = ch.charCodeAt(0).toString(base).toUpperCase();
+      code.split('').forEach(function (d) {
+        var tube = document.createElement('span');
+        tube.className = 'tube lit';
+        tube.textContent = d;
+        digits.appendChild(tube);
+      });
+      group.appendChild(digits);
+
+      tubeBank.appendChild(group);
     });
   }
 
@@ -45,44 +65,22 @@
     updateBaseReadout(base);
     updateSliderFill(base);
 
-    var raw = numInput.value.trim();
+    var raw = textInput.value;
 
     if (!raw) {
-      numInput.classList.remove('has-error');
       inputError.textContent = '';
-      renderEmpty('Scrie un număr mai sus');
+      renderEmpty('Scrie ceva mai sus');
       return;
     }
 
-    // same logic as the original: parse as base-10, re-express in the chosen base
-    var isValidDecimal = /^\d+$/.test(raw);
-    var num = isValidDecimal ? parseInt(raw, 10) : NaN;
-
-    if (!isValidDecimal || !Number.isFinite(num)) {
-      numInput.classList.add('has-error');
-      inputError.textContent = 'Introdu doar cifre, în baza 10.';
-      renderEmpty('—');
-      return;
-    }
-
-    if (!Number.isSafeInteger(num)) {
-      numInput.classList.add('has-error');
-      inputError.textContent = 'Numărul e prea mare pentru o conversie exactă.';
-      renderEmpty('—');
-      return;
-    }
-
-    numInput.classList.remove('has-error');
     inputError.textContent = '';
-
-    var result = num.toString(base).toUpperCase();
-    renderOutput(result);
+    renderOutput(raw, base);
   }
 
-  numInput.addEventListener('input', convert);
+  textInput.addEventListener('input', convert);
   baseRange.addEventListener('input', convert);
 
   updateBaseReadout(parseInt(baseRange.value, 10));
   updateSliderFill(parseInt(baseRange.value, 10));
-  renderEmpty('Scrie un număr mai sus');
+  renderEmpty('Scrie ceva mai sus');
 })();
