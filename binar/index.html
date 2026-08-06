@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Convertor de baze numerice</title>
-<meta name="description" content="Convertește un număr din baza 10 în orice bază de la 2 la 36, pe un afișaj cu tuburi Nixie.">
+<title>Convertor de text în orice bază</title>
+<meta name="description" content="Convertește orice text — litere, cuvinte, fraze — în orice bază de la 2 la 36, pe un afișaj cu tuburi Nixie.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,31 +16,30 @@
 
 <main>
   <span class="eyebrow">CONVERTOR NUMERIC</span>
-  <h1>De la baza 10, <em>la orice bază</em>.</h1>
-  <p class="subhead">Scrie un număr, alege baza țintă (2–36) și privește rezultatul aprinzându-se pe tuburi.</p>
+  <h1>Orice text, <em>în orice bază</em>.</h1>
+  <p class="subhead">Scrie litere, cuvinte sau o frază — fiecare caracter își arată codul, convertit în baza aleasă.</p>
 
   <div class="device">
     <div class="device-head">
-      <span class="brand">MODEL 10→N</span>
+      <span class="brand">MODEL TXT→N</span>
       <span class="power-dot" aria-hidden="true"></span>
     </div>
 
     <div class="row">
-      <label class="row-label" for="numInput">Intrare <span class="row-hint">(bază 10)</span></label>
+      <label class="row-label" for="numInput">Intrare <span class="row-hint">(text liber)</span></label>
       <input
         id="numInput"
         class="num-input"
         type="text"
-        inputmode="numeric"
         autocomplete="off"
         spellcheck="false"
-        placeholder="0"
+        placeholder="scrie orice..."
         aria-describedby="inputError"
       >
       <span id="inputError" class="input-error"></span>
     </div>
 
-    <div class="row">
+    <div class="row row-base">
       <div class="base-head">
         <label class="row-label" for="baseRange">Bază țintă</label>
         <div class="base-readout" aria-hidden="true">
@@ -54,12 +53,12 @@
     </div>
 
     <div class="row output-row">
-      <label class="row-label">Ieșire</label>
+      <label class="row-label">Ieșire <span class="row-hint">(codul fiecărui caracter)</span></label>
       <div class="tube-bank" id="tubeBank" aria-live="polite"></div>
     </div>
   </div>
 
-  <footer>Convertorul folosește notația standard 0–9 și A–Z pentru cifrele bazelor peste 10.</footer>
+  <footer>Fiecare caracter e convertit după codul lui (A=65, a=97 ...). Cifrele bazelor peste 10 folosesc A–Z.</footer>
 </main>
 
 <script src="main.js"></script>
