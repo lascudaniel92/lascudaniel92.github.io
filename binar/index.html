@@ -1,25 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js" defer></script>
-    
-    <title>Convert to binar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convertor de baze numerice</title>
+<meta name="description" content="Convertește un număr din baza 10 în orice bază de la 2 la 36, pe un afișaj cu tuburi Nixie.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="main">
-        <form convert action="" id="convert" >
-            <p>Select a base from 2 to 36</p>
-            <input type="number" id="base" min="2" max="36">
-            <p>Input</p>
-            <textarea id="input" autocomplete="off" class="input" name="" id="" cols="40" rows="10" "></textarea>
-            <p>Output</p>
-            <textarea readonly id="output" autocomplete="off" class="output" name="" id="" cols="40" rows="10"></textarea>
-            
-        </form>
-    </main>
+
+<main>
+  <span class="eyebrow">CONVERTOR NUMERIC</span>
+  <h1>De la baza 10, <em>la orice bază</em>.</h1>
+  <p class="subhead">Scrie un număr, alege baza țintă (2–36) și privește rezultatul aprinzându-se pe tuburi.</p>
+
+  <div class="device">
+    <div class="device-head">
+      <span class="brand">MODEL 10→N</span>
+      <span class="power-dot" aria-hidden="true"></span>
+    </div>
+
+    <div class="row">
+      <label class="row-label" for="numInput">Intrare <span class="row-hint">(bază 10)</span></label>
+      <input
+        id="numInput"
+        class="num-input"
+        type="text"
+        inputmode="numeric"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="0"
+        aria-describedby="inputError"
+      >
+      <span id="inputError" class="input-error"></span>
+    </div>
+
+    <div class="row">
+      <div class="base-head">
+        <label class="row-label" for="baseRange">Bază țintă</label>
+        <div class="base-readout" aria-hidden="true">
+          <span class="tube tube-small" id="baseTubeTens">0</span><span class="tube tube-small" id="baseTubeOnes">2</span>
+        </div>
+      </div>
+      <input type="range" id="baseRange" class="base-range" min="2" max="36" step="1" value="2" aria-label="Bază țintă, de la 2 la 36">
+      <div class="base-scale" aria-hidden="true">
+        <span>2</span><span>10</span><span>16</span><span>26</span><span>36</span>
+      </div>
+    </div>
+
+    <div class="row output-row">
+      <label class="row-label">Ieșire</label>
+      <div class="tube-bank" id="tubeBank" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <footer>Convertorul folosește notația standard 0–9 și A–Z pentru cifrele bazelor peste 10.</footer>
+</main>
+
+<script src="main.js"></script>
 </body>
 </html>
